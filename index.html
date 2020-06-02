@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML5 Logo </title>
+        <meta charset="UTF-8">
+        <!-- Internal CSS -->
+        <style>
+            /* styling body*/
+            body{
+                margin: 3% 30%;
+            }
+            /* styling paragraph*/
+            p {
+                display:block; 
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 15px;
+                font-size: 20px;
+                color: rgba(7, 78, 230, 0.925);
+            }
+        </style>
+        <script language="JavaScript">
+            /* declare a variable to hold the context*/
+            var logo;
+            /* set intial value for the scale*/
+            var initvalue = 1;
+             /* set font size for text drawn on canva */
+            var fontfamily = "65px 'Gill Sans Ultra Bold', sans-serif";
+            /* define init function */
+            function init() { 
+                /* set logo referencing to element's context (the thing onto which drawing will be rendered)*/
+                logo = document.getElementById('canvas').getContext('2d');
+                logo.font = fontfamily; 
+                logo.save(); 
+                drawlogo();
+            }
+            /* drawlogo() function is the main function that uses initvalue to change the scale */
+            function drawlogo() {
+                
+                /* Specify amount to adjust the coordinates
+                to draw the shield part of the logo */
+                var offsety = 80 ; 
+                
+                /* restore the original state of coordinates*/
+                logo.restore(); 
+                
+                /* push onto the stack so can be restored again */
+                logo.save();
+                
+                /* clearing the whole canvas*/
+                logo.clearRect(0,0,600,400);
+
+                /* scale horizontally and vertically using slider */
+                logo.scale(initvalue,initvalue); 
+
+                /* With the font and color set, the methods for drawing text require a string and a
+                position: x and y coordinates.*/
+                logo.fillText("HTML", 31,60);
+
+                /* moving down the screen canvas*/ 
+                logo.translate(0,offsety);
+
+                /* to specify the color, gradient, or pattern to use inside shapes, fillstyle property is used*/
+                logo.fillStyle = "#E34C26"; 
+
+                /* starting a path */
+                logo.beginPath();
+                
+                /* moveTo() moves the path to the specified point in the canvas.
+                In our case, moving to the indicated postition at lower left */
+                logo.moveTo(39, 250);
+                /* drawing line up and more to left*/
+                logo.lineTo(17, 0); 
+                /* drawing line straight over to right*/
+                logo.lineTo(262, 0); 
+                /* drawing line down and slightly left*/
+                logo.lineTo(239, 250);
+                /* drawing line to the left (point at the middle) */
+                logo.lineTo(139, 278);
+                /* closePath method closes up the path by drawing a line back to the starting point*/
+                logo.closePath();
+
+                /* fill in with the indicated color */
+                logo.fill(); 
+                
+                logo.fillStyle = "#F06529"; 
+                
+                logo.beginPath(); 
+                logo.moveTo(139, 257); 
+                logo.lineTo(220, 234); 
+                logo.lineTo(239, 20); 
+                logo.lineTo(139, 20); 
+                logo.closePath(); 
+                
+                logo.fill(); 
+                logo.fillStyle = "#EBEBEB"; 
+                
+                logo.beginPath();
+                /* moving to middle horizontally, midway vertically */
+                logo.moveTo(139, 113);
+                /* drawing line to the left */
+                logo.lineTo(98, 113); 
+                /* drawing line up and slightly further left */
+                logo.lineTo(96, 82);
+                /* drawing line to right */
+                logo.lineTo(139, 82); 
+                /* drawing line up */
+                logo.lineTo(139, 51);
+                /* drawing line to left */
+                logo.lineTo(62, 51); 
+                /* drawing line to left and down */
+                logo.lineTo(70, 144);
+                /* drawing line to right */
+                logo.lineTo(139, 144); 
+                logo.closePath(); 
+                
+                logo.fill(); 
+                
+                /* starting new path */
+                logo.beginPath(); 
+                /* move to middle point */
+                logo.moveTo(139, 193);
+                /* drawing line to the left and up */
+                logo.lineTo(105, 184);
+                /* drawing line slightly to left and up */
+                logo.lineTo(103, 159);
+                /* drawing line more to right and down */
+                logo.lineTo(72, 159);
+                /* drawing line slightly to right and down */
+                logo.lineTo(76, 207);
+                /* drawing line to the left and down */
+                logo.lineTo(139, 225);
+                logo.closePath();
+                
+                logo.fill();
+                logo.fillStyle = "#FFFFFF"; 
+                
+                logo.beginPath();
+                /* starting at middle point*/
+                logo.moveTo(139, 113);
+                /* drawing line down */ 
+                logo.lineTo(139, 144);
+                /* drawing line to the right*/ 
+                logo.lineTo(177, 144);
+                /*drawing line slightly left and down */ 
+                logo.lineTo(173, 184); 
+                /* drawing line more left and down*/
+                logo.lineTo(139, 193);
+                /* drawing line down*/
+                logo.lineTo(139, 225); 
+                /* drawing line to the right and up */
+                logo.lineTo(202, 207); 
+                /* drawing line slightly right and up */
+                logo.lineTo(210, 113);
+                logo.closePath();
+                
+                logo.fill();
+                
+                logo.beginPath(); 
+                logo.moveTo(139, 51);
+                /* moving down */
+                logo.lineTo(139, 82);
+                /* moving to the right*/
+                logo.lineTo(213, 82);
+                /* moving slightly to the right and up */
+                logo.lineTo(216, 51);
+                logo.closePath();
+                
+                logo.fill(); 
+            } 
+            /* The changescale function, response
+                to user input. */
+            function changescale(val) { 
+                initvalue = val / 100; 
+                drawlogo(); 
+            }
+        </script> 
+    </head>
+    <body onLoad="init();">
+        <!-- Canvas tag setting dimensions and with ID to be used in code  -->
+        <h1>Building HTML5 logo using Canvas</h1><hr>
+        <canvas id="canvas" width="600"
+        height="400">
+        </canvas>
+        <!-- slider (range) input with settings -->
+        <p>Scale percentage: <input id="slide" type="range" min="0" max="100"
+            value="100" onChange="changescale(this.value)" step="10"/>
+            <hr>
+        </p>    
+    </body>
+</html>
